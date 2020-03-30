@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WqIconModel } from './icons/build/wq-icon.model';
+import { WqIconModel } from './wq-icon.model';
 
 @Injectable({
   providedIn: 'root'
