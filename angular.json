@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1, 
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "wq-icons": {
+      "projectType": "library",
+      "root": "projects/wq-icons",
+      "sourceRoot": "projects/wq-icons/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/wq-icons/tsconfig.lib.json",
+            "project": "projects/wq-icons/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/wq-icons/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wq-icons/src/test.ts",
+            "tsConfig": "projects/wq-icons/tsconfig.spec.json",
+            "karmaConfig": "projects/wq-icons/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/wq-icons/tsconfig.lib.json",
+              "projects/wq-icons/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "icons-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/icons-demo",
+      "sourceRoot": "projects/icons-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/icons-demo",
+            "index": "projects/icons-demo/src/index.html",
+            "main": "projects/icons-demo/src/main.ts",
+            "polyfills": "projects/icons-demo/src/polyfills.ts",
+            "tsConfig": "projects/icons-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/icons-demo/src/favicon.ico",
+              "projects/icons-demo/src/assets"
+            ],
+            "styles": [
+              "projects/icons-demo/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/icons-demo/src/environments/environment.ts",
+                  "with": "projects/icons-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "icons-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "icons-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "icons-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/icons-demo/src/test.ts",
+            "polyfills": "projects/icons-demo/src/polyfills.ts",
+            "tsConfig": "projects/icons-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/icons-demo/karma.conf.js",
+            "assets": [
+              "projects/icons-demo/src/favicon.ico",
+              "projects/icons-demo/src/assets"
+            ],
+            "styles": [
+              "projects/icons-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/icons-demo/tsconfig.app.json",
+              "projects/icons-demo/tsconfig.spec.json",
+              "projects/icons-demo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/icons-demo/e2e/protractor.conf.js",
+            "devServerTarget": "icons-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "icons-demo:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "wq-icons"
 }
