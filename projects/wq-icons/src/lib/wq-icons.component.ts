@@ -3,7 +3,7 @@ import { WqIconsService } from './wq-icons.service';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'dinosaur-icons',
+  selector: 'wq-icons',
   template: `
         <ng-content></ng-content>
     `,

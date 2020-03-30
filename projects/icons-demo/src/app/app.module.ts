@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WqIconsModule, WqIconsService } from '../../../wq-icons/src/public-api';
-import { wqIconCancel24Px } from 'projects/wq-icons/src/lib/icons';
+import { wqIconCancel24Px } from '../../../wq-icons/icons-list';
 
 @NgModule({
   declarations: [
