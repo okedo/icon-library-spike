@@ -5,8 +5,10 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'wq-icons',
   template: `
-        <ng-content></ng-content>
-    `,
+  <span class="wq-icon-container">
+    <ng-content></ng-content>
+  </span>
+  `,
   styles: [':host::ng-deep svg{width: 50px; height: 50px}'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
